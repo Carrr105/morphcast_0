@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>MorphCast SDK - Demo with graphical elements</title>
     <style>
+
+#videoElement {
+	width: 1000px;
+	height: 500px;
+	float: left;
+}
         #start_over {
             position: absolute;
             background-color: #7F8C8D;
@@ -30,13 +36,13 @@
         }
 
         #myProgress {
-            width: 50%;
+            width: 25%;
             background-color: gray;
         }
 
         #myBar {
             width: 1%;
-            height: 30px;
+            height: 20px;
             background-color: green;
         }
 
@@ -54,6 +60,18 @@
             max-width: 100%;
         }
 
+	.column {
+  	float: left;
+  	width: 50%;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+  	content: "";
+  	display: table;
+  	clear: both;
+	}
+
     </style>
     <!-- configuration for the Alert plugin -->
     <meta name="mphtools-feature" content="compatibilityUI, cameraPrivacyPopup, compatibilityAutoCheck">
@@ -70,12 +88,14 @@
 
 
 <!-- elements of the page -->
+<div class = "row">
+<div class = "column">
 <div><b>Results</b></div>
 <div id="age">Likely Age: -</div>
 <div id="gender">Likely Gender: -</div>
 <div id="emotion">Dominant Emotion: -</div>
 <span>Histogram of Emotions:</span>
-<div id="chart"></div>
+<div id="chart" float="left"></div>
 <div id="start_over">
     <span>CLICK TO START</span>
 </div>
@@ -83,9 +103,17 @@
 <div id="myProgress">
     <div id="myBar"></div>
 </div>
-
 <div class="wrapper">
   <canvas class="charts" id="chartss"></canvas>
+</div>
+</div>
+<div class = "column">
+<div id="container">
+	<video autoplay="true" id="videoElement">
+	
+	</video>
+</div>
+</div>
 </div>
 
 <script>
@@ -223,6 +251,18 @@
   /*
   Elements of the page
    */
+
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
 
 
 </script>
