@@ -6,19 +6,18 @@
     <style>
 
 #videoElement {
-	width: 75%;
-	height: 75%;
+	width: 700px;
+	height: 350px;
   padding-left: 10%;
 }
   #start_over {
       position: absolute;
       background-color: #7F8C8D;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1000;
+      width: 20%;
+      height: 20%;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
   }
 
   #start_over span {
@@ -31,26 +30,29 @@
       color: white;
       display: block;
       height: 20px;
-      margin: auto;
-      text-align: center;
+      display: flex;
+      justify-content: center;
   }
 
   #myProgress {
-      width: 50%;
+      width: 820px;
       background-color: gray;
   }
 
   #myBar {
-      width: 1%;
-      height: 50px;
+      width: 820px;
+      height: 25px;
       background-color: green;
   }
 
   .wrapper {
       position: relative;
-      width: 50%;
-      height: 50%;
+      width: 800px;
+      height: 400px;
       pointer-events: none;
+      display: flex;
+      justify-content: center;
+      padding-top: 2%;
   }
 
   .charts {
@@ -72,10 +74,18 @@
 	}
   .titulo{
     text-align: center;
-    padding: 2%;
+    
   }
-  .histogram {
-     padding-left: 5%;
+  
+  .atencion {
+    padding-left: 8%;
+    padding-top: 2%;
+    
+  }
+  .mostla{
+    display: flex;
+    justify-content: center;
+    padding-right: 15%;
   }
 
     </style>
@@ -103,13 +113,11 @@
   <video autoplay="true" id="videoElement">
   </video>
 </div>
+<div class="atencion">
 <div><b>Resultados</b></div>
 <div id="age">Edad estimada: -</div>
 <div id="gender">Sexo estimado: -</div>
 <div id="emotion">Emoción dominante: -</div>
-<div id="start_over">
-    <span>HAGA CLICK PARA EMPEZAR</span>
-</div>
 <span>Nivel de atención:</span>
 <div id="myProgress">
     <div id="myBar"></div>
@@ -118,14 +126,19 @@
   <canvas class="charts" id="chartss"></canvas>
 </div>
 </div>
+</div>
 <div class = "column">
-  <div class = "histogram">
+  <div class = "derecha">
     <span>Histograma de Emociones:</span>
     <div id="chart"></div>
   </div>
-  <div>
-    <h1>Proyecto en desarrollo realizado por Mostla</h1>
+  <div class="mostla">
+    <h1>Proyecto en desarrollo, realizado por Mostla</h1>
   </div>
+  <div id="start_over">
+    <span>HAGA CLICK PARA EMPEZAR</span>
+  </div>
+
 </div>
 </div>
 
@@ -151,15 +164,15 @@
    */
 
   window.addEventListener(CY.modules().FACE_AGE.eventName, (evt) => {
-    age_div.innerHTML = 'Likely Age: ' + evt.detail.output.numericAge + ' years';
+    age_div.innerHTML = 'Edad estimada: ' + evt.detail.output.numericAge + ' años';
   });
 
   window.addEventListener(CY.modules().FACE_GENDER.eventName, (evt) => {
-    gen_div.innerHTML = 'Likely Gender: ' + evt.detail.output.mostConfident;
+    gen_div.innerHTML = 'Género estimado: ' + evt.detail.output.mostConfident;
   });
 
   window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
-    emo_div.innerHTML = 'Dominant Emotion: ' + evt.detail.output.dominantEmotion;
+    emo_div.innerHTML = 'Emoción dominante: ' + evt.detail.output.dominantEmotion;
 
     // data for the histogram
     const emotions = evt.detail.output.emotion;
@@ -204,9 +217,11 @@
 
   const options = {
     chart: {
-      height: 350,
-      width: 500,
-      type: 'bar'
+      height: '600px',
+      width: '800px',
+      type: 'bar',
+      display: 'flex',
+      justify_content: 'center'
     },
     yaxis: {
       min:0,
