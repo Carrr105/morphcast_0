@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MorphCast SDK - Demo with graphical elements</title>
+    <title>Demo Análisis de emociones con IA</title>
     <style>
 
 #videoElement {
@@ -52,7 +52,7 @@
       pointer-events: none;
       display: flex;
       justify-content: center;
-      padding-top: 2%;
+      padding-top: 5%;
   }
 
   .charts {
@@ -79,7 +79,7 @@
   
   .atencion {
     padding-left: 8%;
-    padding-top: 2%;
+    padding-top: 5%;
     
   }
   .mostla{
@@ -94,6 +94,9 @@
     padding-top: 2%;
   }
   #imagen{
+    display: none;
+  }
+  .hide{
     display: none;
   }
 
@@ -122,11 +125,13 @@
   <video autoplay="true" id="videoElement">
   </video>
 </div>
-<div class="atencion">
+<div class="hide">
 <div><b>Resultados</b></div>
 <div id="age">Edad estimada: -</div>
 <div id="gender">Sexo estimado: -</div>
 <div id="emotion">Emoción dominante: -</div>
+</div>
+<div class="atencion">
 <span>Nivel de atención:</span>
 <div id="myProgress">
     <div id="myBar"></div>
